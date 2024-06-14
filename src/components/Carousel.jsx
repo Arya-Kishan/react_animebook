@@ -44,7 +44,7 @@ const Carousel = ({ filter }) => {
     }, [filter])
 
     return (
-        <div className='flex flex-col gap-5 overflow-scroll p-4'>
+        <div className='flex flex-col gap-5 overflow-x-scroll p-1 sm:p-4'>
             {data && <>
 
                 <div className='flex justify-between'>
