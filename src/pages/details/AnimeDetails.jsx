@@ -6151,7 +6151,7 @@ const AnimeDetails = () => {
                         <p>Source : <span className='text-red-600'>{data.source}</span></p>
                         <p>Duration : <span className='text-red-600'>{data.duration}</span></p>
                         <p>Rating : <span className='text-red-600'>{data.score}</span></p>
-                        <p className='text-yellow-200 flex gap-4'>{data.genres.map((e) => (<span className='bg-teal-500 rounded-md px-2 py-1'>{e.name}</span>))}</p>
+                        <p className='text-yellow-200 flex gap-4'>{data.genres.map((e) => (<span key={e.mal_id} className='bg-teal-500 rounded-md px-2 py-1'>{e.name}</span>))}</p>
                         <p>Description : <span className='text-red-600'>{data.synopsis.split(" ").slice(0, 25).join(" ")}</span> <span className='text-1xl text-gray-400' onClick={() => setMore(!more)}>Read more...</span></p>
                     </div>
                 </div>}
@@ -6160,7 +6160,7 @@ const AnimeDetails = () => {
                 {morePics && <div className='flex flex-col gap-2 overflow-scroll'>
                     <h1 className='text-2xl'>Photos</h1>
                     <div className='w-full flex gap-5'>
-                        {morePics.map((e) => (<div className='w-[100px] h-[200px] sm:w-[100px] sm:h-[200px] flex-shrink-0'><MyImage src={e.webp.image_url} width={"100%"} height={"100%"} /></div>))}
+                        {morePics.map((e, i) => (<div key={i} className='w-[100px] h-[200px] sm:w-[100px] sm:h-[200px] flex-shrink-0'><MyImage src={e.webp.image_url} width={"100%"} height={"100%"} /></div>))}
                     </div>
                 </div>}
 
@@ -6173,7 +6173,7 @@ const AnimeDetails = () => {
                 {moreVideos && <div className='flex flex-col gap-2'>
                     <h1 className='text-2xl Photos'>Videos</h1>
                     <div className='flex gap-2 overflow-scroll'>
-                        {moreVideos.map((e) => (<div className='flex-shrink-0'>
+                        {moreVideos.map((e) => (<div key={e.mal_id} className='flex-shrink-0'>
                             <iframe className='w-[150px] h-[100px] sm:w-[300px] sm:h-[200px] bg-white p-4' src={e.trailer.embed_url + "?autoplay=0"} frameborder="0" F></iframe>
                         </div>))}
                     </div>
@@ -6181,7 +6181,7 @@ const AnimeDetails = () => {
 
                 {/* SHOWING ALL CHARACTERS */}
                 {characters && <div className='flex justify-center gap-4 flex-wrap px-10'>
-                    {characters.map((e) => (<div onClick={() => navigate(`/characterDetails/${e.character.mal_id}`)} className='flex flex-col gap-2 w-[120px] sm:w-[200px] bg-white p-2 hover:cursor-pointer'>
+                    {characters.map((e) => (<div key={e.mal_id} onClick={() => navigate(`/characterDetails/${e.character.mal_id}`)} className='flex flex-col gap-2 w-[120px] sm:w-[200px] bg-white p-2 hover:cursor-pointer'>
                         <div className='w-[100px] h-[150px] sm:w-[180px] sm:h-[250px]'>
                             <MyImage src={e.character.images.webp.image_url} width="100%" height="100%" />
                         </div>
@@ -6193,7 +6193,7 @@ const AnimeDetails = () => {
                 {recommend && <div className='flex flex-col gap-2 overflow-scroll'>
                     <h1 className='text-2xl'>Recommendations</h1>
                     <div className='flex gap-5'>
-                        {recommend.map((e) => (<div onClick={() => navigate(`/animeDetails/${e.entry.mal_id}`)} className='flex flex-col gap-1 flex-shrink-0 w-[100px] h-[200px] sm:w-[225px] sm:h-[340px]'>
+                        {recommend.map((e) => (<div key={e.mal_id} onClick={() => navigate(`/animeDetails/${e.entry.mal_id}`)} className='flex flex-col gap-1 flex-shrink-0 w-[100px] h-[200px] sm:w-[225px] sm:h-[340px]'>
                             <MyImage src={e.entry.images.webp.image_url} width={"100%"} height={"100%"} />
                             <p>{e.entry.name}</p>
                         </div>))}

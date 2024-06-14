@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+body {
   background: rgb(219, 209, 209);
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+}
+
+.category::-webkit-scrollbar-thumb {
+  background: linear-gradient(to left, rgb(141, 0, 0), rgb(0, 0, 0));
+  border-radius: 20px;
 }

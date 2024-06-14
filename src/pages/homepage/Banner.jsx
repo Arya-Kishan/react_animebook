@@ -17,10 +17,10 @@ const Banner = () => {
             </div>
 
             <div className='md:w-[50%] h-full flex justify-center items-end'>
-                <img className='w-[250px] md:w-[500px] z-10' src={group} alt="" srcset="" />
+                <img className='w-[250px] md:w-[500px] z-10' src={group} alt="" srcSet="" />
             </div>
 
-            <img className='absolute -bottom-[250px] -right-[250px] rotate-[15deg] w-[1000px] z-5' src={blob1} alt="" srcset="" />
+            <img className='absolute -bottom-[250px] -right-[250px] rotate-[15deg] w-[1000px] z-5' src={blob1} alt="" srcSet="" />
 
             <img src={star1} className='absolute top-[10%] left-[10%] w-[20px] h-[20px]'></img>
             <img src={star2} className='absolute top-[20%] left-[20%] w-[20px] h-[20px]'></img>

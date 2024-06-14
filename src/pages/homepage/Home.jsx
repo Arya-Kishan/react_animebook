@@ -1,18 +1,18 @@
 import React from 'react'
 import Banner from './Banner'
 import Carousel from '../../components/Carousel'
+import Navbar from '../Navbar'
 
-const arr = [null, "upcoming", "bypopularity"]
+const arr = [false, "upcoming", "bypopularity"]
 
 const Home = () => {
     return (
         <div className='flex flex-col gap-10'>
+            <Navbar />
             <Banner />
-
             <div className='flex flex-col'>
                 {arr.map((e) => (
-                    <div>
-                        <h1 className='uppercase text-2xl font-semibold px-2'>{e ? e : "Trending"}</h1>
+                    <div key={e}>
                         <Carousel filter={e} />
                     </div>
                 ))}
