@@ -1,6 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import MyImage from './MyImage'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Card = ({ obj }) => {
 
@@ -13,11 +15,16 @@ const Card = ({ obj }) => {
   return (
     <div onClick={() => handleCardClick(obj.mal_id)} className='w-[100px] sm:w-[250px] flex flex-col gap-2 relative flex-shrink-0 bg-white p-2 text-[15px]'>
 
-      <div className='w-[80px] sm:w-[248px] h-[116px] sm:h-[350px]'><MyImage src={obj.images.webp.image_url} /></div>
+      <LazyLoadImage
+        alt=""
+        effect="blur"
+        threshold={100}
+        className={`w-[80px] sm:w-[248px] h-[116px] sm:h-[320px] rounded-lg`}
+        src={obj.images.webp.image_url} />
 
       <span className='hidden sm:block'>{obj.title.split(" ").slice(0, 2).join(" ")}</span>
 
-      <span className='absolute top-2 right-2 bg-teal-800 rounded-lg text-[12px] px-2 py-1 sm:px-4 sm:py-2 text-white'>{obj.score}</span>
+      {obj.score && <span className='absolute top-3 right-6 bg-teal-500 rounded-lg text-[12px] px-2 py-1 sm:p-2 text-white'>{obj.score}</span>}
 
     </div>
   )

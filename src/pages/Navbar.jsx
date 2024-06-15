@@ -19,9 +19,9 @@ const Navbar = () => {
             <h1 className='text-[18px] sm:text-4xl text-[#6E434D] font-bold uppercase'>animebook</h1>
 
             <div className='w-[250px] flex justify-end gap-2'>
-                <input onChange={(e) => setInput(e.target.value)} onKeyUp={handleKeyUp} className='w-full rounded-md border-none outline-none p-2 hidden md:flex' placeholder='Search Amime...' type="text" name="" id="" />
+                <input onChange={(e) => setInput(e.target.value)} onKeyUp={handleKeyUp} className='w-full rounded-md border-none outline-none p-2 hidden sm:flex' placeholder='Search Amime...' type="text" name="" id="" />
                 <img onClick={() => navigate(`/searchPage/${input}`)} className='w-[30px] hidden sm:block' src={searchIcon} alt="" srcSet="" />
-                <img onClick={() => setShow(true)} className='w-[30px]' src={searchIcon} alt="" srcSet="" />
+                <img onClick={() => setShow(true)} className='w-[30px] sm:hidden' src={searchIcon} alt="" srcSet="" />
             </div>
 
             {/* FIXED SEARCH FOR SMALL SCREEN */}

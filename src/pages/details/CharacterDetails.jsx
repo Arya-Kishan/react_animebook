@@ -3,6 +3,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import MyImage from '../../components/MyImage'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const CharacterDetails = () => {
 
@@ -30,7 +32,7 @@ const CharacterDetails = () => {
   }, [])
 
   return (
-    <div className='w-full h-dvh flex justify-center items-center p-2 md:p-10 overflow-hidden'>
+    <div className='w-full h-dvh flex justify-center items-center p-2 md:p-10 overflow-scroll'>
       {detail && pics
         ?
         <div className='flex flex-col gap-10'>
@@ -48,7 +50,12 @@ const CharacterDetails = () => {
 
           <div className='w-[70vw] flex gap-5 overflow-x-scroll overflow-y-hidden'>
             {pics.map((e, i) => (<div key={i} className='flex-shrink-0'>
-              <MyImage src={e.jpg.image_url} width={"100px"} height={"150px"} />
+              <LazyLoadImage
+                alt=""
+                effect="blur"
+                threshold={100}
+                className={`w-[100px] h-[150px] rounded-lg`}
+                src={e.jpg.image_url} />
             </div>))}
           </div>
 

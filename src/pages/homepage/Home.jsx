@@ -3,6 +3,7 @@ import Banner from './Banner'
 import Carousel from '../../components/Carousel'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
+import FamousCharacters from './FamousCharacters'
 
 const arr = [false, "upcoming", "bypopularity"]
 
@@ -18,6 +19,7 @@ const Home = () => {
                     </div>
                 ))}
             </div>
+            <FamousCharacters />
             <Footer />
         </div>
     )

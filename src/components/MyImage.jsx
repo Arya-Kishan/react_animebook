@@ -7,7 +7,7 @@ const MyImage = ({ src }) => (
         alt=""
         effect="blur"
         threshold={100}
-        className={`w-full h-full`}
+        className={`w-full h-full rounded-lg`}
         src={src} />
 );
 

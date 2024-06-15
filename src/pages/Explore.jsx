@@ -4,6 +4,7 @@ import Card from '../components/Card';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import loader from '../assets/loader.svg'
+import filterIcon from '../assets/filterIcon.svg'
 
 let ages = [{ title: 'all', value: 'G' }, { title: 'Children', value: 'PG' }, { title: 'Teens', value: 'PG-13' }, { title: 'violence 17+', value: 'R' }, { title: 'Adult', value: 'R+' }, { title: 'Hentai', value: 'Rx' }]
 
@@ -18,43 +19,19 @@ const Explore = () => {
   const [total, setTotal] = useState(null)
 
   const { filter } = useParams();
-  console.log(url);
 
-  const getTop = async () => {
-    console.log(filter);
-    if (filter != "all") {
-      let { data } = await axios(`/top/anime?filter=${filter}&page=${page}`)
-      console.log(data);
-      setUrl(`/top/anime?filter=${filter}`)
-      setTotal(data.pagination.items.total)
-      setData(data.data)
-    } else {
-      let { data } = await axios(`/top/anime?page=${page}`)
-      console.log(data);
-      setUrl(`/top/anime`)
-      setTotal(data.pagination.items.total)
-      setData(data.data)
-    }
-
+  const getTop = async (url) => {
+    console.log("fetching data wait a minute");
+    let { data } = await axios(url)
+    setUrl(url)
+    setTotal(data.pagination.items.total)
+    setData(data.data)
   }
 
   const fetchNextData = async () => {
-
-    if (filter != "all") {
-      let { data: res } = await axios(`${url}&page=${page}`)
-      console.log(res);
-      setData([...data, ...res.data])
-    } else {
-      let { data: res } = await axios(`${url}?page=${page}`)
-      console.log(res);
-      setData([...data, ...res.data])
-
-    }
-
-  }
-
-  const handleNext = () => {
-    setPage((prev) => prev + 1);
+    let { data: res } = await axios(`${url}&page=${page}`)
+    console.log(res);
+    setData([...data, ...res.data])
   }
 
   const getUrl = (type = false, filter = false, rating = false) => {
@@ -91,13 +68,13 @@ const Explore = () => {
     url = url + `?${str}`
     console.log(url);
 
+    getTop(url);
+
 
   }
 
-  getUrl(false, filter, false);
-
   useEffect(() => {
-    getTop();
+    getUrl(false, filter, false);
   }, [])
 
   useEffect(() => {
@@ -109,13 +86,13 @@ const Explore = () => {
 
       <div className='flex justify-between px-10 py-4 '>
         <p className='capitalize font-semibold text-[20px] sm:text-3xl'>{filter}</p>
-        <p onClick={() => setShowFilter(!showFilter)}>#</p>
+        <img onClick={() => setShowFilter(!showFilter)} className='w-[30px] h-[30px]' src={filterIcon} alt="" srcset="" />
       </div>
 
 
       <InfiniteScroll
         dataLength={page * 25} //This is important field to render the next data
-        next={handleNext}
+        next={() => setPage((prev) => prev + 1)}
         hasMore={page * 25 < (total - 25)}
         loader={<img className='width-[50px] h-[50px] m-auto' src={loader} alt="" srcSet="" />}
         endMessage={
@@ -125,22 +102,28 @@ const Explore = () => {
         }
       >
         {data ? <div className='flex gap-4 flex-wrap justify-center'>
-          {data.map((e) => (<Card obj={e} />))}
+          {data.map((e) => (<Card key={e.mal_id} obj={e} />))}
         </div> : <p>Loading...</p>}
       </InfiniteScroll>
 
       {showFilter && <div onClick={() => setShowFilter(!showFilter)} className='fixed top-0 left-0 w-full h-dvh flex justify-center items-center bg-gradient-to-tr from-black'>
 
-        <div onClick={(e) => e.stopPropagation()} className='w-[80%] h-[80%] flex flex-col gap-5 justify-center items-start bg-red-600 p-5'>
+        <div onClick={(e) => e.stopPropagation()} className='w-[80%] h-[80%] sm:h-[50%] flex flex-col gap-5 justify-start items-start bg-red-600 rounded-lg shadow-lg shadow-white p-5'>
 
           <div className='flex flex-col gap-2'>
-            <h1>AGES</h1>
-            <div className='flex flex-wrap gap-2'>{ages.map((e) => (<button onClick={() => getUrl(false, filter, e.value)} className='bg-white text-black px-2 py-1 border-2 border-black rounded-md'>{e.title}</button>))}</div>
+            <h1 className='font-bold text-xl'>AGES</h1>
+            <div className='flex flex-wrap gap-2'>{ages.map((e) => (<button key={e.value} onClick={() => {
+              getUrl(false, filter, e.value);
+              setShowFilter(!showFilter)
+            }} className='w-[200px] bg-white text-black px-2 py-1 border-2 border-black rounded-md capitalize'>{e.title}</button>))}</div>
           </div>
 
           <div className='flex flex-col gap-2'>
-            <h1>TYPES</h1>
-            <div className='flex flex-wrap gap-2'>{typeArr.map((e) => (<button onClick={() => getUrl(e, filter, false)} className='bg-white text-black px-2 py-1 border-2 border-black rounded-md'>{e}</button>))}</div>
+            <h1 className='font-bold text-xl'>TYPES</h1>
+            <div className='flex flex-wrap gap-2'>{typeArr.map((e) => (<button key={e} onClick={() => {
+              getUrl(e, filter, false);
+              setShowFilter(!showFilter)
+            }} className='w-[200px] bg-white text-black px-2 py-1 border-2 border-black rounded-md capitalize'>{e}</button>))}</div>
           </div>
 
         </div>
