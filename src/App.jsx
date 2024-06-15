@@ -3,6 +3,7 @@ import './App.css'
 import axios from 'axios'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Loader from './components/Loader';
+import Explore from './pages/Explore';
 const Home = lazy(() => import('./pages/homepage/Home'));
 const AnimeDetails = lazy(() => import('./pages/details/AnimeDetails'));
 const CharacterDetails = lazy(() => import('./pages/details/CharacterDetails'));
@@ -21,6 +22,7 @@ function App() {
         <Suspense fallback={<div><Loader /></div>}>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/explore/:filter' element={<Explore />} />
             <Route path='/animeDetails/:animeId' element={<AnimeDetails />} />
             <Route path='/characterDetails/:characterId' element={<CharacterDetails />} />
             <Route path='/searchPage/:search' element={<SearchPage />} />

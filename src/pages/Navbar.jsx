@@ -5,6 +5,7 @@ const Navbar = () => {
 
     const navigate = useNavigate();
     const [input, setInput] = useState("");
+    const [show, setShow] = useState(false);
 
     const handleKeyUp = (e) => {
         if (e.key == "Enter") {
@@ -13,14 +14,23 @@ const Navbar = () => {
     }
 
     return (
-        <div className='w-full flex justify-between items-center py-3 px-6 fixed top-0 left-0 z-50'>
+        <div className='w-full flex justify-between bg-[#DBD1D1] items-center py-3 px-6 fixed top-0 left-0 z-50'>
 
-            <h1 className='text-4xl text-[#6E434D] font-bold uppercase'>animebook</h1>
+            <h1 className='text-[18px] sm:text-4xl text-[#6E434D] font-bold uppercase'>animebook</h1>
 
             <div className='w-[250px] flex justify-end gap-2'>
                 <input onChange={(e) => setInput(e.target.value)} onKeyUp={handleKeyUp} className='w-full rounded-md border-none outline-none p-2 hidden md:flex' placeholder='Search Amime...' type="text" name="" id="" />
-                <img onClick={() => navigate(`/searchPage/${input}`)} className='w-[30px]' src={searchIcon} alt="" srcSet="" />
+                <img onClick={() => navigate(`/searchPage/${input}`)} className='w-[30px] hidden sm:block' src={searchIcon} alt="" srcSet="" />
+                <img onClick={() => setShow(true)} className='w-[30px]' src={searchIcon} alt="" srcSet="" />
             </div>
+
+            {/* FIXED SEARCH FOR SMALL SCREEN */}
+            {show && <div onClick={() => setShow(false)} className='fixed top-0 left-0 w-full h-dvh flex justify-center items-center bg-gradient-to-tr from-black'>
+                <div onClick={(e) => e.stopPropagation()} className='flex gap-2'>
+                    <input onChange={(e) => setInput(e.target.value)} onKeyUp={handleKeyUp} className='w-full rounded-md border-none outline-none p-2 ' placeholder='Search Amime...' type="text" name="" id="" />
+                    <img onClick={() => navigate(`/ searchPage / ${input}`)} className='w-[30px]' src={searchIcon} alt="" srcSet="" />
+                </div>
+            </div>}
 
         </div>
     )

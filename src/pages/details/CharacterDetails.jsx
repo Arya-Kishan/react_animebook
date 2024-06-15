@@ -37,7 +37,7 @@ const CharacterDetails = () => {
 
           <div className='w-[70vw] flex flex-col md:flex-row items-center gap-10'>
 
-            <img className='w-[200px] h-[300px] md:w-[300px] md:h-[400px]' src={pics[0].jpg.image_url} alt="" srcset="" />
+            <img className='w-[200px] h-[300px] md:w-[300px] md:h-[400px]' src={pics[0].jpg.image_url} alt="" srcSet="" />
 
             <div>
               <p>Name : <span>{detail.name} {detail.name_kanji}</span></p>

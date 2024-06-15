@@ -6143,7 +6143,7 @@ const AnimeDetails = () => {
                 {data && <div className='flex flex-col sm:flex-row gap-5'>
 
                     <div className='flex justify-center items-center'>
-                        <img className='w-[800px]' src={data.images.webp.large_image_url} alt="" srcset="" />
+                        <img loading='lazy' className='w-[800px]' src={data.images.webp.large_image_url} alt="" srcSet="" />
                     </div>
 
                     <div className='flex flex-col gap-2 justify-evenly items-start text-[15px] sm:text-[20px]'>

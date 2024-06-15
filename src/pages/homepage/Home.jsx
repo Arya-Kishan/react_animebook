@@ -2,6 +2,7 @@ import React from 'react'
 import Banner from './Banner'
 import Carousel from '../../components/Carousel'
 import Navbar from '../Navbar'
+import Footer from '../Footer'
 
 const arr = [false, "upcoming", "bypopularity"]
 
@@ -17,6 +18,7 @@ const Home = () => {
                     </div>
                 ))}
             </div>
+            <Footer />
         </div>
     )
 }
