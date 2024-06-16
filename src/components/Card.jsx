@@ -13,7 +13,7 @@ const Card = ({ obj }) => {
   }
 
   return (
-    <div onClick={() => handleCardClick(obj.mal_id)} className='w-[100px] sm:w-[250px] flex flex-col gap-2 relative flex-shrink-0 bg-white p-2 text-[15px]'>
+    <div onClick={() => handleCardClick(obj.mal_id)} className='w-[100px] sm:w-[250px] flex flex-col gap-2 relative flex-shrink-0 bg-white p-2 text-[15px] cursor-pointer transition-all hover:-translate-y-2'>
 
       <LazyLoadImage
         alt=""
@@ -24,7 +24,7 @@ const Card = ({ obj }) => {
 
       <span className='hidden sm:block'>{obj.title.split(" ").slice(0, 2).join(" ")}</span>
 
-      {obj.score && <span className='absolute top-3 right-6 bg-teal-500 rounded-lg text-[12px] px-2 py-1 sm:p-2 text-white'>{obj.score}</span>}
+      {obj.score && <span className='w-[20px] h-[20px] sm:w-[30px] sm:h-[30px] rounded-full flex justify-center items-center absolute top-3 right-6 bg-pink-400 text-[8px] sm:text-[10px] p-1 text-white'>{obj.score}</span>}
 
     </div>
   )

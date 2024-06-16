@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import searchIcon from '../assets/searchIcon.svg'
 import { useNavigate } from 'react-router-dom'
 const Navbar = () => {
 
     const navigate = useNavigate();
     const [input, setInput] = useState("");
+    const [bg, setBg] = useState(false);
     const [show, setShow] = useState(false);
 
     const handleKeyUp = (e) => {
@@ -13,8 +14,30 @@ const Navbar = () => {
         }
     }
 
+    const getScroll = (e) => {
+
+        if (window.scrollY > 100) {
+            setBg(true)
+        }
+
+        if (window.scrollY < 100) {
+            setBg(false)
+        }
+
+    }
+
+
+    useEffect(() => {
+        window.addEventListener("scroll", getScroll);
+
+        return () => {
+            window.removeEventListener("scroll", getScroll);
+        }
+
+    }, [])
+
     return (
-        <div className='w-full flex justify-between bg-[#DBD1D1] items-center py-3 px-6 fixed top-0 left-0 z-50'>
+        <div className={`w-full flex justify-between ${!bg ? "" : "bg-[#DBD1D1]"} transition-all duration-700 items-center py-3 px-6 fixed top-0 left-0 z-50`}>
 
             <h1 className='text-[18px] sm:text-4xl text-[#6E434D] font-bold uppercase'>animebook</h1>
 

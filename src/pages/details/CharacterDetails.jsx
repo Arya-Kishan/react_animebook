@@ -32,14 +32,14 @@ const CharacterDetails = () => {
   }, [])
 
   return (
-    <div className='w-full h-dvh flex justify-center items-center p-2 md:p-10 overflow-scroll'>
+    <div className='w-full h-dvh flex justify-center items-center p-2 md:p-10 mt-[40px] md:mt-2 overflow-scroll'>
       {detail && pics
         ?
         <div className='flex flex-col gap-10'>
 
-          <div className='w-[70vw] flex flex-col md:flex-row items-center gap-10'>
+          <div className='w-[70vw] flex flex-col md:flex-row items-center gap-10 pt-2'>
 
-            <img className='w-[200px] h-[300px] md:w-[300px] md:h-[400px]' src={pics[0].jpg.image_url} alt="" srcSet="" />
+            <img loading='lazy' className='w-[200px] h-[300px] md:w-[300px] md:h-[400px]' src={pics[0].jpg.image_url} alt="" srcSet="" />
 
             <div>
               <p>Name : <span>{detail.name} {detail.name_kanji}</span></p>
