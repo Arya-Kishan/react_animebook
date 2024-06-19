@@ -19,7 +19,7 @@ const Card = ({ obj }) => {
         alt=""
         effect="blur"
         threshold={100}
-        className={`w-[80px] sm:w-[248px] h-[116px] sm:h-[320px] rounded-lg`}
+        className={`w-[120px] sm:w-[248px] h-[126px] sm:h-[320px] rounded-lg`}
         src={obj.images.webp.image_url} />
 
       <span className='hidden sm:block'>{obj.title.split(" ").slice(0, 2).join(" ")}</span>
