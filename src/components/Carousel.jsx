@@ -44,12 +44,12 @@ const Carousel = ({ filter }) => {
     }, [filter])
 
     return (
-        <div className='h-[205px] sm:h-[470px] flex flex-col gap-2 overflow-x-scroll p-1 sm:p-4'>
+        <div className='h-[250px] sm:h-[470px] flex flex-col gap-2 overflow-x-scroll p-1 sm:p-4'>
             {data && <>
 
                 <div className='flex justify-between'>
 
-                    <h1 className='uppercase text-1xl sm:text-2xl font-semibold px-2'>{filter ? filter : "Trending"}</h1>
+                    <h1 className='uppercase text-1xl sm:text-2xl font-semibold px-2 text-blue-500'>{filter ? filter : "Trending"}</h1>
 
                     <select onChange={(e) => getAnimeType(e.target.value)} name="" id="">
                         <option className='capitalize' value={'all'}>{'All'}</option>

@@ -21,7 +21,7 @@ const SearchPage = () => {
 
 
     return (
-        <div>
+        <div className='text-white'>
 
             <h1 className='text-4xl font-semibold capitalize text-center p-6'>{params.search}</h1>
 

@@ -46,8 +46,9 @@ const AnimeDetails = () => {
     }, [params])
 
     return (
-        <div>
-            <div className='flex flex-col gap-20 p-8 pt-[20px] sm:pt-[100px]'>
+        <div className='text-white'>
+
+            <div className='flex flex-col gap-20 p-2 md:p-5 pt-[20px] sm:pt-[100px]'>
 
                 {/* DETIALS */}
                 {data && <div className='flex flex-col sm:flex-row gap-5'>
@@ -62,12 +63,12 @@ const AnimeDetails = () => {
                     </div>
 
                     <div className='flex flex-col gap-2 justify-evenly items-start text-[15px] sm:text-[20px]'>
-                        <p>Title : <span className='text-red-600'>{data.title}</span></p>
-                        <p>Source : <span className='text-red-600'>{data.source}</span></p>
-                        <p>Duration : <span className='text-red-600'>{data.duration}</span></p>
-                        <p>Rating : <span className='text-red-600'>{data.score}</span></p>
-                        <p className='text-yellow-200 flex gap-4'>{data.genres.map((e) => (<span key={e.mal_id} className='bg-teal-500 rounded-md px-2 py-1'>{e.name}</span>))}</p>
-                        <p>Description : <span className='text-red-600'>{data?.synopsis?.split(" ").slice(0, 25).join(" ")}</span> <span className='text-1xl text-gray-400 cursor-pointer' onClick={() => setMore(!more)}>Read more...</span></p>
+                        <p>Title : <span className='text-gray-300'>{data.title}</span></p>
+                        <p>Source : <span className='text-gray-300'>{data.source}</span></p>
+                        <p>Duration : <span className='text-gray-300'>{data.duration}</span></p>
+                        <p>Rating : <span className='text-gray-300'>{data.score}</span></p>
+                        <p className='text-yellow-200 flex gap-4'>{data.genres.slice(0,2).map((e) => (<span key={e.mal_id} className='bg-teal-500 rounded-md px-2 py-1'>{e.name}</span>))}</p>
+                        <p>Description : <span className='text-gray-300'>{data?.synopsis?.split(" ").slice(0, 25).join(" ")}</span> <span className='text-1xl text-gray-400 cursor-pointer' onClick={() => setMore(!more)}>Read more...</span></p>
                     </div>
                 </div>}
 
@@ -112,12 +113,18 @@ const AnimeDetails = () => {
 
                 {/* POP BOX TO SHOW FULL DESCRIPTION */}
                 {
-                    more && <div onClick={() => setMore(!more)} className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gradient-to-tr from-black p-10 overflow-scroll'>
-                        <div onClick={(e) => e.stopPropagation()} className='w-[60%] h-[70%] text-white bg-pink-500 p-5 rounded-lg'>{data.synopsis}</div>
+                    more && <div onClick={() => setMore(!more)} className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gradient-to-tr from-black p-10 overflow-hidden'>
+                        <div onClick={(e) => e.stopPropagation()} className='w-[95%] h-[80%] md:w-[60%] md:h-[70%] overflow-scroll text-white bg-pink-500 p-5 rounded-lg'>{data.synopsis}</div>
                     </div>
                 }
 
+                {data && <div className='z-[-1]'>
+                    <div className="shadow"></div>
+                    <img className='w-full h-dvh absolute top-0 left-0 z-[-1]' src={data?.trailer?.images?.maximum_image_url} alt="" srcset="" />
+                </div>}
+
             </div >
+
         </div >
     )
 }

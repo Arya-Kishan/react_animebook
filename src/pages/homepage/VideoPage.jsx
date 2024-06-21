@@ -2,11 +2,11 @@ import React from 'react'
 import jjk from '../../assets/jjk.png'
 const VideoPage = () => {
     return (
-        <div className='flex aspect-video sm:aspect-auto justify-center items-center bg-pink-200'>
+        <div className='flex aspect-video sm:aspect-auto justify-center items-center'>
 
 
             <div className='w-[100vw] aspect-video flex justify-center items-center'>
-                <iframe className='w-[95%] sm:w-[70%] aspect-video shadow-lg shadow-black' src="https:\/\/www.youtube.com\/embed\/4A_X-Dvl0ws?enablejsapi=1&wmode=opaque&autoplay=1&modestbranding=1&autohide=1&showinfo=0&loop=1" frameborder="0"></iframe>
+                <iframe className='w-[100%] sm:w-[70%] aspect-video shadow-lg shadow-black' src="https:\/\/www.youtube.com\/embed\/4A_X-Dvl0ws?enablejsapi=1&wmode=opaque&autoplay=1&modestbranding=1&autohide=1&showinfo=0&loop=1" frameborder="0"></iframe>
             </div >
 
 

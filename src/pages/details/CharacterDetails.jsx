@@ -32,7 +32,7 @@ const CharacterDetails = () => {
   }, [])
 
   return (
-    <div className='w-full h-dvh flex justify-center items-center p-2 md:p-10 mt-[40px] md:mt-2 overflow-scroll'>
+    <div className='w-full h-dvh flex justify-center items-center p-2 md:p-10 mt-[40px] md:mt-2 overflow-scroll text-white'>
       {detail && pics
         ?
         <div className='flex flex-col gap-10'>
@@ -41,9 +41,9 @@ const CharacterDetails = () => {
 
             <img loading='lazy' className='w-[200px] h-[300px] md:w-[300px] md:h-[400px]' src={pics[0].jpg.image_url} alt="" srcSet="" />
 
-            <div>
-              <p>Name : <span>{detail.name} {detail.name_kanji}</span></p>
-              <p>About : <span>{detail.about.split(" ").slice(0, 80).join(" ")}</span></p>
+            <div className='text-xl sm:text-3xl'>
+              <span className='text-blue-400'>{detail.name} {detail.name_kanji}</span>
+              <p className='text-[15px] sm:text-[20px]'>About : <span>{detail.about.split(" ").slice(0, 80).join(" ")}</span></p>
             </div>
 
           </div>

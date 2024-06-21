@@ -1,8 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const CardImage = ({ src, title }) => {
+
+    const navigate = useNavigate();
+
     return (
-        <div className='w-[100%] flex gap-2 justify-center md:justify-between p-4 bg-blue-900'>
+        <div onClick={() => navigate(`/searchPage/${title}`)} className='w-[100%] flex gap-2 justify-center md:justify-between p-4 bg-blue-950 rounded-lg'>
 
             <img className='w-[100px] h-[100px] sm:w-[200px] sm:h-[200px]' src={src} alt="" srcset="" />
 

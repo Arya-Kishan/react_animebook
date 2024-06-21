@@ -8,7 +8,7 @@ const Footer = () => {
     const navigate = useNavigate();
 
     return (
-        <div className='w-full flex flex-col justify-center items-center gap-5 bg-pink-900'>
+        <div className='w-full flex flex-col justify-center items-center gap-5 text-white'>
 
             <h1 className='text-2xl sm:text-4xl font-bold uppercase px-2 pt-6'>anime book</h1>
 

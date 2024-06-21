@@ -13,18 +13,18 @@ const Card = ({ obj }) => {
   }
 
   return (
-    <div onClick={() => handleCardClick(obj.mal_id)} className='w-[100px] sm:w-[250px] flex flex-col gap-2 relative flex-shrink-0 bg-white p-2 text-[15px] cursor-pointer transition-all hover:-translate-y-2'>
+    <div onClick={() => handleCardClick(obj.mal_id)} className='w-[120px] sm:w-[230px] flex flex-col gap-2 relative flex-shrink-0 text-[15px] cursor-pointer transition-all hover:-translate-y-2 text-white'>
 
       <LazyLoadImage
         alt=""
         effect="blur"
         threshold={100}
-        className={`w-[120px] sm:w-[248px] h-[126px] sm:h-[320px] rounded-lg`}
+        className={`w-[120px] sm:w-[230px] h-[180px] sm:h-[320px] rounded-lg`}
         src={obj.images.webp.image_url} />
 
       <span className='hidden sm:block'>{obj.title.split(" ").slice(0, 2).join(" ")}</span>
 
-      {obj.score && <span className='w-[20px] h-[20px] sm:w-[30px] sm:h-[30px] rounded-full flex justify-center items-center absolute top-3 right-6 bg-pink-400 text-[8px] sm:text-[10px] p-1 text-white'>{obj.score}</span>}
+      {obj.score && <span className='w-[30px] h-[20px] sm:w-[50px] sm:h-[25px] rounded-lg flex justify-center items-center absolute top-1 right-1 bg-blue-700 text-[8px] sm:text-[10px] p-1 text-white'>{obj.score}</span>}
 
     </div>
   )
