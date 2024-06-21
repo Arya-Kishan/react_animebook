@@ -1,11 +1,5 @@
 import React from 'react'
 import group from "../../assets/group1.png"
-import blob1 from "../../assets/blob1.svg"
-import star1 from "../../assets/star1.svg"
-import star2 from "../../assets/star2.svg"
-import star3 from "../../assets/star3.svg"
-import polygon1 from "../../assets/polygon1.svg"
-import polygon2 from "../../assets/polygon2.svg"
 import { useNavigate } from 'react-router-dom'
 
 const Banner = () => {
@@ -24,15 +18,6 @@ const Banner = () => {
                 <img className='w-[250px] md:w-[500px] z-10' src={group} alt="" srcSet="" />
             </div>
 
-            {/* <img className='absolute -bottom-[250px] -right-[250px] rotate-[15deg] w-[1000px] z-5' src={blob1} alt="" srcSet="" /> */}
-
-            <img src={star1} className='absolute top-[10%] left-[10%] w-[20px] h-[20px]'></img>
-            <img src={star2} className='absolute top-[20%] left-[20%] w-[20px] h-[20px]'></img>
-            <img src={polygon1} className='absolute top-[75%] left-[40%] w-[20px] h-[20px]'></img>
-            <img src={star3} className='absolute top-[80%] left-[10%] w-[20px] h-[20px]'></img>
-            <img src={polygon2} className='absolute top-[90%] left-[20%] w-[20px] h-[20px]'></img>
-
-            {/* <div className="absolute top-0 left-0 w-full h-full bg-[url('bg1.jpg')] bg-no-repeat bg-center bg-cover"></div> */}
             <div className="shadow"></div>
 
         </div >
