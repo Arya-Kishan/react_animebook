@@ -13,7 +13,7 @@ const Banner = () => {
     const navigate = useNavigate();
 
     return (
-        <div className='w-full h-[60vh] sm:h-dvh flex flex-col md:flex-row relative overflow-hidden text-white'>
+        <div className='bg w-full h-[60vh] sm:h-dvh flex flex-col md:flex-row relative overflow-hidden text-white'>
 
             <div className='md:w-[50%] h-full flex flex-col items-center md:items-start justify-center gap-5 pl-5 md:pl-10 lg:pl-20 z-10'>
                 <h1 className='w-[70%] md:w-full text-[25px] md:text-5xl pt-[70px] md:pt-0 text-center md:text-start font-bold uppercase'>Welcome to animebook see the world <span className='text-teal-600'>famous</span> anime</h1>
@@ -24,7 +24,7 @@ const Banner = () => {
                 <img className='w-[250px] md:w-[500px] z-10' src={group} alt="" srcSet="" />
             </div>
 
-            <img className='absolute -bottom-[250px] -right-[250px] rotate-[15deg] w-[1000px] z-5' src={blob1} alt="" srcSet="" />
+            {/* <img className='absolute -bottom-[250px] -right-[250px] rotate-[15deg] w-[1000px] z-5' src={blob1} alt="" srcSet="" /> */}
 
             <img src={star1} className='absolute top-[10%] left-[10%] w-[20px] h-[20px]'></img>
             <img src={star2} className='absolute top-[20%] left-[20%] w-[20px] h-[20px]'></img>
@@ -32,7 +32,7 @@ const Banner = () => {
             <img src={star3} className='absolute top-[80%] left-[10%] w-[20px] h-[20px]'></img>
             <img src={polygon2} className='absolute top-[90%] left-[20%] w-[20px] h-[20px]'></img>
 
-            <div className="absolute top-0 left-0 w-full h-full bg-[url('bg1.jpg')] bg-no-repeat bg-center bg-cover"></div>
+            {/* <div className="absolute top-0 left-0 w-full h-full bg-[url('bg1.jpg')] bg-no-repeat bg-center bg-cover"></div> */}
             <div className="shadow"></div>
 
         </div >
