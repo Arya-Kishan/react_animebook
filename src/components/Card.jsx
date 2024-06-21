@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import MyImage from './MyImage'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import star from '../assets/star.svg'
 
 const Card = ({ obj }) => {
 
@@ -24,7 +25,10 @@ const Card = ({ obj }) => {
 
       <span className='hidden sm:block'>{obj.title.split(" ").slice(0, 2).join(" ")}</span>
 
-      {obj.score && <span className='w-[30px] h-[20px] sm:w-[50px] sm:h-[25px] rounded-lg flex justify-center items-center absolute top-1 right-1 bg-blue-700 text-[8px] sm:text-[10px] p-1 text-white'>{obj.score}</span>}
+      {obj.score && <div className='w-[30px] h-[20px] sm:w-[50px] sm:h-[25px] rounded-lg flex justify-center items-center gap-1 absolute top-1 right-1 bg-blue-700 text-[8px] sm:text-[10px] p-1 text-white'>
+        <span>{obj.score.toFixed(1)}</span>
+        <img className='w-[8px] sm:w-[10px]' src={star} alt="" srcset="" />
+      </div>}
 
     </div>
   )

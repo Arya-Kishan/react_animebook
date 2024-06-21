@@ -12,14 +12,14 @@ const Footer = () => {
 
             <h1 className='text-2xl sm:text-4xl font-bold uppercase px-2 pt-6'>anime book</h1>
 
-            <p className='text-[14px] sm:text-xl text-center px-2'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta cumque laudantium ab consequatur non et accusantium culpa iusto eveniet maiores?</p>
+            <p className='text-[14px] sm:text-xl text-center px-2'>Dive and Explore the world of anime and Manga a place where all characters plays a real character and face the world </p>
 
             <div className='sflex justify-center items-center gap-2 px-2'>
                 <input onChange={(e) => setInput(e.target.value)} className='p-2' type="text" placeholder='Search Anime...' />
-                <button onClick={() => navigate(`/searchPage/${input}`)} className='bg-pink-500 px-4 py-2'>Search</button>
+                <button onClick={() => navigate(`/searchPage/${input}`)} className='bg-blue-700 px-4 py-2'>Search</button>
             </div>
 
-            <p className='w-full text-center p-1 bg-gray-500'>@copyrightaryaKishan</p>
+            <a target='_blank' href="https://arya-portfilio.netlify.app/" className='w-full text-center p-1 text-white'>@copyrightaryaKishan</a>
 
         </div>
     )

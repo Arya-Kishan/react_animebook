@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import group from "../../assets/group1.png"
 import { useNavigate } from 'react-router-dom'
 
 const Banner = () => {
 
+    const [input, setInput] = useState("");
     const navigate = useNavigate();
+
+    const handelSearch = () => {
+        navigate(`/searchPage/${input}`)
+    }
+
+    const handleEnter = (e) => {
+        if (e.key == "Enter") {
+            handelSearch();
+        }
+    }
 
     return (
         <div className='bg w-full h-[60vh] sm:h-dvh flex justify-center items-center relative text-white'>
@@ -17,9 +28,9 @@ const Banner = () => {
 
                 <div className='text-xl flex'>
 
-                    <input className='w-full bg-white text-[16px] sm:text-xl p-1 sm:p-2 rounded-l-lg border-none outline-none text-blue-700' type="text" placeholder='Search Anime...' />
+                    <input onKeyUp={handleEnter} onChange={(e) => setInput(e.target.value)} className='w-full bg-white text-[16px] sm:text-xl p-1 sm:p-2 rounded-l-lg border-none outline-none text-blue-700' type="text" placeholder='Search Anime...' />
 
-                    <button className='w-[30%] text-[15px] sm:text-xl bg-blue-500 rounded-r-lg flex justify-center items-center capitalize'>search</button>
+                    <button onClick={handelSearch} className='w-[30%] text-[15px] sm:text-xl bg-blue-500 rounded-r-lg flex justify-center items-center capitalize'>search</button>
 
                 </div>
 
