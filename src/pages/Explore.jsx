@@ -82,16 +82,19 @@ const Explore = () => {
   }, [page])
 
   return (
-    <div>
+    <div className='text-white'>
 
       <div className='flex justify-between px-10 py-4 '>
+
         <p className='capitalize font-semibold text-[20px] sm:text-3xl'>{filter}</p>
-        <img onClick={() => setShowFilter(!showFilter)} className='w-[30px] h-[30px]' src={filterIcon} alt="" srcset="" />
+
+        <img onClick={() => setShowFilter(!showFilter)} className='w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] bg-white p-1 rounded-xl' src={filterIcon} alt="" srcset="" />
+
       </div>
 
 
       <InfiniteScroll
-        dataLength={page * 25} //This is important field to render the next data
+        dataLength={page * 25}
         next={() => setPage((prev) => prev + 1)}
         hasMore={page * 25 < (total - 25)}
         loader={<img className='width-[50px] h-[50px] m-auto' src={loader} alt="" srcSet="" />}
@@ -101,14 +104,16 @@ const Explore = () => {
           </p>
         }
       >
+
         {data ? <div className='flex gap-4 flex-wrap justify-center'>
           {data.map((e) => (<Card key={e.mal_id} obj={e} />))}
-        </div> : <p>Loading...</p>}
+        </div> : <div className='w-full h-dvh flex justify-center items-center'>Loading...</div>}
+
       </InfiniteScroll>
 
       {showFilter && <div onClick={() => setShowFilter(!showFilter)} className='fixed top-0 left-0 w-full h-dvh flex justify-center items-center bg-gradient-to-tr from-black'>
 
-        <div onClick={(e) => e.stopPropagation()} className='w-[80%] h-[80%] sm:h-[50%] flex flex-col gap-5 justify-start items-start bg-red-600 rounded-lg shadow-lg shadow-white p-5'>
+        <div onClick={(e) => e.stopPropagation()} className='w-[80%] h-[80%] sm:h-[50%] flex flex-col gap-5 justify-start items-start bg-blue-600 rounded-lg shadow-lg shadow-white p-5'>
 
           <div className='flex flex-col gap-2'>
             <h1 className='font-bold text-xl'>AGES</h1>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const CardImage = ({ src, title }) => {
+const CardImage = ({ src, title, desc }) => {
 
     const navigate = useNavigate();
 
@@ -10,9 +10,9 @@ const CardImage = ({ src, title }) => {
 
             <img className='w-[100px] h-[100px] sm:w-[200px] sm:h-[200px]' src={src} alt="" srcset="" />
 
-            <p className='hidden flex-col md:flex'>
-                <span className='font-bold text-4xl text-white capitalize'>{title}</span>
-                <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et modi explicabo ut corporis animi dolor unde saepe esse voluptatum rem.</span>
+            <p className='hidden flex-col md:flex gap-4 text-white'>
+                <span className='font-bold text-4xl capitalize'>{title}</span>
+                <span>{desc}</span>
             </p>
 
         </div>

@@ -7,15 +7,23 @@ const Banner = () => {
     const navigate = useNavigate();
 
     return (
-        <div className='bg w-full h-[60vh] sm:h-dvh flex flex-col md:flex-row relative overflow-hidden text-white'>
+        <div className='bg w-full h-[60vh] sm:h-dvh flex justify-center items-center relative text-white'>
 
-            <div className='md:w-[50%] h-full flex flex-col items-center md:items-start justify-center gap-5 pl-5 md:pl-10 lg:pl-20 z-10'>
-                <h1 className='w-[70%] md:w-full text-[25px] md:text-5xl pt-[70px] md:pt-0 text-center md:text-start font-bold uppercase'>Welcome to animebook see the world <span className='text-teal-600'>famous</span> anime</h1>
-                <button onClick={() => navigate(`explore/all`)} className='text-2xl font-semibold bg-[#BCAC9C] border-none rounded-md px-3 py-2 cursor-pointer hover:bg-pink-400'>Explore</button>
-            </div>
+            <div className='w-[85%] sm:w-[60%] flex flex-col justify-center items-center gap-3 z-10'>
 
-            <div className='hidden sm:flex md:w-[50%] h-full justify-center items-end'>
-                <img className='w-[250px] md:w-[500px] z-10' src={group} alt="" srcSet="" />
+                <h1 className='text-4xl sm:text-8xl font-bold'>Welcome</h1>
+
+                <p className='text-[14px] sm:text-xl font-semi-bold text-center capitalize'>millions of anime, people and manga to discover</p>
+
+                <div className='text-xl flex'>
+
+                    <input className='w-full bg-white text-[16px] sm:text-xl p-1 sm:p-2 rounded-l-lg border-none outline-none text-blue-700' type="text" placeholder='Search Anime...' />
+
+                    <button className='w-[30%] text-[15px] sm:text-xl bg-blue-500 rounded-r-lg flex justify-center items-center capitalize'>search</button>
+
+                </div>
+
+
             </div>
 
             <div className="shadow"></div>

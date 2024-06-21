@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Card from './Card';
 import axios from 'axios';
+import more from '../assets/more.svg'
+import { useNavigate } from 'react-router-dom';
 
 let typeArr = ["tv", "movie", "special", "music", "tv_special"]
 
 const Carousel = ({ filter }) => {
 
     const [data, setData] = useState(null);
+    const navigate = useNavigate();
 
 
     const getTop = async () => {
@@ -22,25 +25,8 @@ const Carousel = ({ filter }) => {
         }
     }
 
-    const getAnimeType = async (type) => {
-        console.log(type);
-
-        if (type == "all") {
-            getTop();
-        }
-
-        if (filter) {
-            let { data } = await axios(`/top/anime?filter=${filter}&type=${type}`)
-            setData(data.data)
-        } else {
-            let { data } = await axios(`/top/anime?type=${type}`)
-            setData(data.data)
-        }
-    }
-
     useEffect(() => {
         getTop();
-        // https://api.jikan.moe/v4/top/anime?filter=favorite&type=tv
     }, [filter])
 
     return (
@@ -51,12 +37,10 @@ const Carousel = ({ filter }) => {
 
                     <h1 className='uppercase text-1xl sm:text-2xl font-semibold px-2 text-blue-500'>{filter ? filter : "Trending"}</h1>
 
-                    <select onChange={(e) => getAnimeType(e.target.value)} name="" id="">
-                        <option className='capitalize' value={'all'}>{'All'}</option>
-                        {typeArr.map((e) => (
-                            <option key={e} className='capitalize' value={e}>{e}</option>
-                        ))}
-                    </select>
+                    <div onClick={() => navigate(`/explore/${filter ? filter : "all"}`)} className='text-blue-400 font-semibold flex gap-2 justify-center items-center hover:cursor-pointer'>
+                        <span>More</span>
+                        <img className='w-[25px]' src={more} alt="" srcset="" />
+                    </div>
 
                 </div>
 

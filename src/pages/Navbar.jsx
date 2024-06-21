@@ -37,7 +37,7 @@ const Navbar = () => {
     }, [])
 
     return (
-        <div className={`w-full flex justify-between ${!bg ? "" : "bg-[#DBD1D1]"} transition-all duration-700 items-center py-3 px-6 fixed top-0 left-0 z-50`}>
+        <div className={`w-full flex justify-between ${!bg ? "" : "bg-[#0a0825af]"} transition-all duration-700 items-center py-3 px-6 fixed top-0 left-0 z-50`}>
 
             <h1 className='text-[18px] sm:text-4xl text-white font-bold uppercase'>anime<span className='text-blue-500'>book</span></h1>
 
