@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Card from './Card';
-import axios from 'axios';
 import more from '../assets/more.svg'
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../Context';
 
 let typeArr = ["tv", "movie", "special", "music", "tv_special"]
 
@@ -10,23 +10,17 @@ const Carousel = ({ filter }) => {
 
     const [data, setData] = useState(null);
     const navigate = useNavigate();
+    const { getTop } = useContext(AppContext)
 
 
-    const getTop = async () => {
-        console.log(filter);
-        if (filter) {
-            let { data } = await axios(`/top/anime?filter=${filter}`)
-            console.log(data);
-            setData(data.data)
-        } else {
-            let { data } = await axios("/top/anime")
-            console.log(data);
-            setData(data.data)
-        }
+    const getTop1 = async () => {
+        let res = await getTop(filter);
+        console.log(res);
+        setData(res);
     }
 
     useEffect(() => {
-        getTop();
+        getTop1();
     }, [filter])
 
     return (
@@ -39,7 +33,7 @@ const Carousel = ({ filter }) => {
 
                     <div onClick={() => navigate(`/explore/${filter ? filter : "all"}`)} className='text-blue-400 font-semibold flex gap-2 justify-center items-center hover:cursor-pointer'>
                         <span>More</span>
-                        <img className='w-[25px]' src={more} alt="" srcset="" />
+                        <img className='w-[25px]' src={more} alt="" srcSet="" />
                     </div>
 
                 </div>

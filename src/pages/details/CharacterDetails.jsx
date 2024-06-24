@@ -1,34 +1,35 @@
 import { data } from 'autoprefixer'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import MyImage from '../../components/MyImage'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { AppContext } from '../../Context'
 
 const CharacterDetails = () => {
 
   const [detail, setDetail] = useState(null)
   const [pics, setPics] = useState(null)
+  const { getCharacterDetails, getCharacterPictures } = useContext(AppContext)
 
   const params = useParams();
 
-  const getCharacterDetails = async () => {
-    let { data } = await axios(`https://api.jikan.moe/v4/characters/${params.characterId}`)
-    console.log(data);
-    setDetail(data.data)
+  const getCharacterDetails1 = async () => {
+    let data = await getCharacterDetails(params.characterId);
+    setDetail(data)
   }
 
-  const getCharacterPictures = async () => {
-    let { data } = await axios(`https://api.jikan.moe/v4/characters/${params.characterId}/pictures`)
-    setPics(data.data)
-    console.log(data);
+  const getCharacterPictures1 = async () => {
+    // let { data } = await axios(`https://api.jikan.moe/v4/characters/${params.characterId}/pictures`)
+    let data = await getCharacterPictures(params.characterId);
+    setPics(data)
   }
 
 
   useEffect(() => {
-    getCharacterDetails();
-    getCharacterPictures();
+    getCharacterDetails1();
+    getCharacterPictures1();
   }, [])
 
   return (

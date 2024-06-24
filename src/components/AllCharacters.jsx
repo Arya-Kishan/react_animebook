@@ -1,22 +1,23 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../Context';
 
 const AllCharacters = ({ animeId }) => {
 
     const [characters, setCharacters] = useState(false)
     const navigate = useNavigate()
+    const { getCharacters } = useContext(AppContext)
 
-    const getCharacters = async () => {
-        let { data } = await axios(`/anime/${animeId}/characters`)
-        setCharacters(data.data)
+    const getCharacters1 = async () => {
+        let data = await getCharacters(animeId);
+        setCharacters(data);
     }
 
     useEffect(() => {
         setTimeout(() => {
-            getCharacters();
+            getCharacters1();
         }, 2000);
     }, [animeId])
 

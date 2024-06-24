@@ -1,21 +1,23 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Card from '../components/Card';
+import { AppContext } from '../Context';
 
 const SearchPage = () => {
 
     const params = useParams();
     const [data, setData] = useState(false);
+    const { getSearchResult } = useContext(AppContext);
 
-    async function getSearchResult(search) {
-        const { data } = await axios(`https://api.jikan.moe/v4/anime?q=${params.search}`)
-        console.log(data.data);
-        setData(data.data);
+    async function getSearchResult1(search) {
+        // const { data } = await axios(`https://api.jikan.moe/v4/anime?q=${params.search}`)
+        const data = await getSearchResult(params.search);
+        setData(data);
     }
 
     useEffect(() => {
-        getSearchResult();
+        getSearchResult1();
     }, [])
 
 

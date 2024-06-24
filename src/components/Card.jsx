@@ -27,7 +27,7 @@ const Card = ({ obj }) => {
 
       {obj.score && <div className='w-[30px] h-[20px] sm:w-[50px] sm:h-[25px] rounded-lg flex justify-center items-center gap-1 absolute top-1 right-1 bg-blue-700 text-[8px] sm:text-[10px] p-1 text-white'>
         <span>{obj.score.toFixed(1)}</span>
-        <img className='w-[8px] sm:w-[10px]' src={star} alt="" srcset="" />
+        <img className='w-[8px] sm:w-[10px]' src={star} alt="" srcSet="" />
       </div>}
 
     </div>

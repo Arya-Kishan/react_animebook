@@ -1,23 +1,25 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../Context';
 
 const Recommendation = ({ animeId }) => {
 
     const [recommend, setRecommend] = useState(false)
     const navigate = useNavigate()
+    const { getRecommendationList } = useContext(AppContext)
 
 
-    const getRecommendationList = async () => {
-        let { data } = await axios(`/anime/${animeId}/recommendations`)
-        setRecommend(data.data);
+    const getRecommendationList1 = async () => {
+        let data = await getRecommendationList(animeId)
+        setRecommend(data);
     }
 
     useEffect(() => {
         setTimeout(() => {
-            getRecommendationList();
+            getRecommendationList1();
         }, 3000);
     }, [animeId])
 

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import group from "../../assets/group1.png"
 import { useNavigate } from 'react-router-dom'
 
 const Banner = () => {

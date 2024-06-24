@@ -1,21 +1,20 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../../Context';
 
 const FamousCharacters = () => {
 
     const [data, setData] = useState(false)
-
     const navigate = useNavigate();
+    const { getFamousCharacter } = useContext(AppContext)
 
     const getFamous = async () => {
-
-        let { data } = await axios(`https://api.jikan.moe/v4/top/characters`)
+        let data = await getFamousCharacter();
         console.log(data);
-        setData(data.data)
-
+        setData(data)
     }
 
     useEffect(() => {

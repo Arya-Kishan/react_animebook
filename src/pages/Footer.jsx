@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../Context';
 
 const Footer = () => {
 
-    const [input, setInput] = useState("");
+    const { setType, type } = useContext(AppContext)
+    const navigate = useNavigate()
 
-    const navigate = useNavigate();
+    const handleChangeCategory = (category) => {
+        setType(category);
+        localStorage.setItem("animebook_category", category)
+        navigate("/")
+    }
 
     return (
         <div className='w-full flex flex-col justify-center items-center gap-5 text-white'>
@@ -15,8 +21,7 @@ const Footer = () => {
             <p className='text-[14px] sm:text-xl text-center px-2'>Dive and Explore the world of anime and Manga a place where all characters plays a real character and face the world </p>
 
             <div className='sflex justify-center items-center gap-2 px-2'>
-                <input onChange={(e) => setInput(e.target.value)} className='p-2' type="text" placeholder='Search Anime...' />
-                <button onClick={() => navigate(`/searchPage/${input}`)} className='bg-blue-700 px-4 py-2'>Search</button>
+                <button onClick={() => handleChangeCategory(type == "anime" ? "manga" : "anime")} className='bg-blue-700 px-4 py-2 shadow-md shadow-blue-600 cursor-pointer'>{type == "anime" ? "Manga" : "Anime"}</button>
             </div>
 
             <a target='_blank' href="https://arya-portfilio.netlify.app/" className='w-full text-center p-1 text-white'>@copyrightaryaKishan</a>

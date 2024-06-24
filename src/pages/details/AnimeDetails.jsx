@@ -1,11 +1,12 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import MyImage from '../../components/MyImage';
+import React, { useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import loader from '../../assets/loader.svg'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Recommendation from '../../components/Recommendation';
 import AllCharacters from '../../components/AllCharacters';
+import { AppContext } from '../../Context';
 
 
 const AnimeDetails = () => {
@@ -18,37 +19,44 @@ const AnimeDetails = () => {
 
     const params = useParams();
 
-    const getAnimeDetails = async (animeId) => {
-        let { data } = await axios(`/anime/${params.animeId}`)
-        setData(data.data)
+    const { getAnimeDetails, getMorePictures, getMoreVideos } = useContext(AppContext);
+
+    const getAnimeDetails1 = async () => {
+        let data = await getAnimeDetails(params.animeId);
+        setData(data)
     }
 
-    const getMorePictures = async (animeId) => {
-        let { data } = await axios(`/anime/${params.animeId}/pictures`)
-        setMorePics(data.data)
+    const getMorePictures1 = async () => {
+        let data = await getMorePictures(params.animeId);
+        setMorePics(data)
     }
 
-    const getMoreVideos = async (animeId) => {
-        let { data } = await axios(`/anime/${params.animeId}/videos`)
-        setMoreVideos(data.data?.promo)
+    const getMoreVideos1 = async (animeId) => {
+        let data = await getMoreVideos(params.animeId);
+        setMoreVideos(data);
     }
 
     useEffect(() => {
-        getAnimeDetails();
+
+        setData(false);
+
+        getAnimeDetails1();
         setTimeout(() => {
-            getMorePictures();
+            getMorePictures1();
         }, 1000);
 
         setTimeout(() => {
-            getMoreVideos();
+            getMoreVideos1();
         }, 2000);
+
+        window.scrollTo(0, 0);
 
     }, [params])
 
     return (
         <div className='text-white'>
 
-            <div className='flex flex-col gap-20 p-2 md:p-5 pt-[20px] sm:pt-[100px]'>
+            {data ? <div className='flex flex-col gap-20 p-2 md:p-5 pt-[20px] sm:pt-[100px]'>
 
                 {/* DETIALS */}
                 {data && <div className='flex flex-col sm:flex-row gap-5'>
@@ -67,7 +75,7 @@ const AnimeDetails = () => {
                         <p>Source : <span className='text-gray-300'>{data.source}</span></p>
                         <p>Duration : <span className='text-gray-300'>{data.duration}</span></p>
                         <p>Rating : <span className='text-gray-300'>{data.score}</span></p>
-                        <p className='text-yellow-200 flex gap-4'>{data.genres.slice(0,2).map((e) => (<span key={e.mal_id} className='bg-teal-500 rounded-md px-2 py-1'>{e.name}</span>))}</p>
+                        <p className='text-yellow-200 flex gap-4'>{data.genres.slice(0, 2).map((e) => (<span key={e.mal_id} className='bg-teal-500 rounded-md px-2 py-1'>{e.name}</span>))}</p>
                         <p>Description : <span className='text-gray-300'>{data?.synopsis?.split(" ").slice(0, 25).join(" ")}</span> <span className='text-1xl text-gray-400 cursor-pointer' onClick={() => setMore(!more)}>Read more...</span></p>
                     </div>
                 </div>}
@@ -91,8 +99,8 @@ const AnimeDetails = () => {
                 </div>}
 
                 {/* SHOWING YOUTUBE VIDEOS */}
-                {data && data.trailer.embed_url && <div className='flex justify-center items-center'>
-                    <iframe className='w-[250px] h-[200px] sm:w-[600px] sm:h-[400px] bg-white p-4' src={data.trailer.embed_url} frameBorder="0"></iframe>
+                {data && data?.trailer?.embed_url && <div className='flex justify-center items-center'>
+                    <iframe className='w-[250px] h-[200px] sm:w-[600px] sm:h-[400px] bg-white p-4' src={data?.trailer?.embed_url} frameBorder="0"></iframe>
                 </div>}
 
                 {/* MORE VIDEOS */}
@@ -100,7 +108,7 @@ const AnimeDetails = () => {
                     <h1 className='text-2xl sm:text-4xl font-bold Photos'>Videos</h1>
                     <div className='flex gap-2 overflow-scroll'>
                         {moreVideos.map((e) => (<div key={e.mal_id} className='flex-shrink-0'>
-                            <iframe className='w-[150px] h-[100px] sm:w-[300px] sm:h-[200px] bg-white p-4' src={e.trailer.embed_url + "?autoplay=0"} frameBorder="0"></iframe>
+                            <iframe className='w-[150px] h-[100px] sm:w-[300px] sm:h-[200px] bg-white p-4' src={e?.trailer?.embed_url + "?autoplay=0"} frameBorder="0"></iframe>
                         </div>))}
                     </div>
                 </div>}
@@ -120,10 +128,10 @@ const AnimeDetails = () => {
 
                 {data && <div className='z-[-1]'>
                     <div className="shadow"></div>
-                    <img className='w-full h-dvh absolute top-0 left-0 z-[-1]' src={data?.trailer?.images?.maximum_image_url} alt="" srcset="" />
+                    <img className='w-full h-dvh absolute top-0 left-0 z-[-1]' src={data?.trailer?.images?.maximum_image_url} alt="" srcSet="" />
                 </div>}
 
-            </div >
+            </div > : <div className='w-full h-dvh flex justify-center items-center'><img className='w-[70px] h-[70px]' src={loader} alt="" srcSet="" /></div>}
 
         </div >
     )

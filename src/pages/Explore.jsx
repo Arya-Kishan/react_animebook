@@ -88,7 +88,7 @@ const Explore = () => {
 
         <p className='capitalize font-semibold text-[20px] sm:text-3xl'>{filter}</p>
 
-        <img onClick={() => setShowFilter(!showFilter)} className='w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] bg-white p-1 rounded-xl' src={filterIcon} alt="" srcset="" />
+        <img onClick={() => setShowFilter(!showFilter)} className='w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] bg-white p-1 rounded-xl' src={filterIcon} alt="" srcSet="" />
 
       </div>
 
