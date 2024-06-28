@@ -32,7 +32,8 @@ Landing Page :-
 
 Home Page :-
 
-![chrome_xxQScWAIbR](https://github.com/Arya-Kishan/JS_AnimeBook/assets/133795523/79c7df0c-bb4a-455a-8807-934688a8f18a)
+![chrome_Z18Sg2XLbx](https://github.com/Arya-Kishan/JS_AnimeBook/assets/133795523/a1481b6a-363d-4dc4-87b5-493682b1c411)
+
 
 
 Detail Page:-
